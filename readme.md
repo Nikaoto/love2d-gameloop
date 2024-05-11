@@ -1,6 +1,8 @@
 # love2d-gameloop
 
-Times taken for the player to reach the end of the ruler:
+Times taken for the player to reach the end of the ruler. In other words, the
+player, moving at a constant speed of 10 pixels per second, took this much game
+time to cover a distance of 66 pixels:
 
 | ..   | vsync   | novsync  & dynthrot | novsync & stathrot | novsync & simpdynthrot |
 |------|---------|---------------------|--------------------|------------------------|
