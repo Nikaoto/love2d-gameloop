@@ -6,10 +6,7 @@ local runtime = {
    dt = 0,
    prev_frame_timestamp = 0,
    uptime = 0,
-   prev_second_frame_num = 0,
 
-
-   throttle_dt = 1/25, -- If dt is below this, we are going too fast
 
    -- Maximum frame drops allowed before the game starts to slow down is
    -- MAX_ACCUM / GAME_TIME_STEP
@@ -62,6 +59,7 @@ function runtime.run()
          runtime.prev_fps_measure_timestamp = now
       end
 
+      -- Calculate deltatime
       runtime.dt = now - runtime.prev_frame_timestamp
       runtime.prev_frame_timestamp = now
       if math.abs(runtime.dt - 1/120) < runtime.FUZZ then

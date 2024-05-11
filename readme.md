@@ -1,6 +1,5 @@
 # love2d-gameloop
 
-
 Times taken for the player to reach the end of the ruler:
 
 | ..   | vsync   | novsync  & dynthrot | novsync & stathrot | novsync & simpdynthrot |

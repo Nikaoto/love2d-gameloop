@@ -6,13 +6,12 @@ slowdown_sleep = 0.02
 update_slow = false
 render_slow = false
 
-ruler_x = 6
+ruler_x = 10
 ruler_w = 80
 player_w = 10
 player_x = 10
 player_y = 10
 player_speed = 10 -- pixels per second
-
 
 vsync_opts = {0, -1, 1}
 GAME_WIDTH = 1024
