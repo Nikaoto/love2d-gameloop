@@ -11,7 +11,7 @@ Times taken for the player to reach the end of the ruler:
 | avg  | 6.64603 | 6.63504             | 6.63576            | 6.64137                |
 | diff | 0       | 0.01099             | 0.01026            | 0.00466                |
 
-When we don't have vsync the `novsync & dimpdynthrot` method works best and is
+When we don't have vsync the `novsync & simpdynthrot` method works best and is
 what's implemented in `src/engine/runtime.lua`. The same method works when vsync
 is on, the throttling simply won't happen since the desired fps is not being
 exceeded.
