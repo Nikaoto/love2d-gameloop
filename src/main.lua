@@ -74,7 +74,7 @@ function love.update(dt)
 
    -- Stop simulation after crossing right side of ruler
    if player_x + player_w > ruler_w + ruler_x then
-      print(info())
+      print("\n" .. info())
       love.event.quit()
    end
 end
@@ -95,7 +95,7 @@ end
 
 function info()
    return fmt(
-      "\nplayer_x: %g\n" ..
+      "player_x: %g\n" ..
       "player_speed: %g\n" ..
       "frame: %d\n" ..
       "fps: %g\n" ..

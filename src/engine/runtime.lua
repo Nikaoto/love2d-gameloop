@@ -7,13 +7,37 @@ local runtime = {
    prev_frame_timestamp = 0,
    uptime = 0,
 
+   --[[
+      love.update() will be called with this deltatime.
+      Assumed that game updates at 60fps
+   --]]
+   GAME_TIME_STEP = 1/60,
 
-   -- Maximum frame drops allowed before the game starts to slow down is
-   -- MAX_ACCUM / GAME_TIME_STEP
+   --[[
+      Maximum frame drops allowed before the game starts to slow down is
+      equal to MAX_ACCUM / GAME_TIME_STEP.
+   --]]
    MAX_ACCUM = 8/60,
-   GAME_TIME_STEP = 1/30,
+
+   --[[
+      If the game starts going faster than this (120fps), we start slowing it
+      down. Main reason for this is to make use of the extra time to hand off
+      control to the OS. Love2D in the default love.run() loop just sleeps for 1
+      millisecond for that reason, but it's not necessary. We can be nice to the
+      OS only when we have the luxury.
+   --]]
    THROTTLE_DT = 1/120,
+
+   --[[
+      Used for detecting vsync. With vsync on, we don't get exactly 60fps or
+      30ps or whatever, there's always some error, so this accounts for it.
+   --]]
    FUZZ = 0.0002,
+
+   --[[
+      Minimum amount SDL_Delay() and therefore love.timer.sleep() can sleep for.
+      The latter function calls the former behind the curtains.
+   --]]
    SDL_MIN_SLEEP = 0.001,
 }
 
