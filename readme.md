@@ -12,6 +12,8 @@ time to cover a distance of 66 pixels:
 | avg  | 6.64603 | 6.63504             | 6.63576            | 6.64137                |
 | diff | 0       | 0.01099             | 0.01026            | 0.00466                |
 
+
+This still needs more testing. I will expand on each table entry with explanations after I have tested them thoroughly in actual games.
 When we don't have vsync the `novsync & simpdynthrot` method works best and is
 what's implemented in `src/engine/runtime.lua`. The same method works when vsync
 is on, the throttling simply won't happen since the desired fps is not being
