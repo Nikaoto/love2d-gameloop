@@ -29,3 +29,4 @@ exceeded.
 * https://web.archive.org/web/20150702054525/http://bulletphysics.org/mediawiki-1.5.8/index.php/Canonical_Game_Loop
 * https://web.archive.org/web/20141217095341/http://www.koonsolo.com/news/dewitters-gameloop/
 * https://web.archive.org/web/20170608104357/http://gafferongames.com/game-physics/fix-your-timestep/
+* https://marioslab.io/posts/jitterbugs/#The%20story%20of%20Pixi
