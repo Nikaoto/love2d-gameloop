@@ -33,12 +33,6 @@ local runtime = {
       30ps or whatever, there's always some error, so this accounts for it.
    --]]
    FUZZ = 0.0002,
-
-   --[[
-      Minimum amount SDL_Delay() and therefore love.timer.sleep() can sleep for.
-      The latter function calls the former behind the curtains.
-   --]]
-   SDL_MIN_SLEEP = 0.001,
 }
 
 function runtime.reset()
@@ -96,8 +90,25 @@ function runtime.run()
          runtime.dt = 1/15 -- vsync is probably on
       elseif runtime.dt < runtime.THROTTLE_DT then
          -- Going too fast, throttle
-         love.timer.sleep(math.max(runtime.THROTTLE_DT - runtime.dt,
-                                   runtime.SDL_MIN_SLEEP))
+         local total_time = runtime.THROTTLE_DT - runtime.dt
+         local sleep_time = math.floor(total_time)
+         local spinlock_time = total_time - sleep_time
+
+         -- NOTE: love.timer.sleep() uses SDL_Delay() behind the scenes, which
+         -- can sleep a minimum of 1ms with a precision of 1ms. Meaning, if we
+         -- tell it to sleep for 2.4ms, it will likely end up sleeping for 3ms,
+         -- which we don't want. So, here we split the time into the integer and
+         -- fractional parts. We sleep for the integer number of milliseconds
+         -- and spinlock for the fractional.
+
+         if sleep_time > 0 then
+            love.timer.sleep(sleep_time)
+         end
+
+         local end_time = love.timer.getTime() + spinlock_time
+         while spinlock_time > 0 do
+            spinlock_time = end_time - love.timer.getTime()
+         end
       end
 
       runtime.accum = math.min(runtime.accum + runtime.dt, runtime.MAX_ACCUM)
